@@ -1,5 +1,5 @@
 let posts=[ ];
-let count = 0;
+// let count = 0;
 const likedPostsId = [];
 const reportedPostsId = [];
 
@@ -12,16 +12,17 @@ const getReportedPosts = () => {
 };
 
 const isLiked = (id) => {
-    return likedPostsId?.length && !!likedPostsId.includes(id);
+    return likedPostsId?.length && likedPostsId.includes(id);
 };
 
 const addToLiked = (id) => {
-  count++
-  if(count % 2 == 1){
-    likedPostsId.push(id); 
+  const index = likedPostsId.indexOf(id); 
+  // console.log(index);
+  if (index === -1) {
+    likedPostsId.push(id);
     showPosts(posts);
   } else{
-    likedPostsId.pop(id);
+    likedPostsId.splice(index);
     showPosts(posts);
   }
     // likedPostsId.push(id); 
@@ -59,7 +60,7 @@ const switchTab = (id) => {
 };
 
 const createPost = (post) => {
-    console.log(post);
+    // console.log(post);
     const image = post.image;
     const userImage = post.userImage;
     const div = document.createElement( "article" );
